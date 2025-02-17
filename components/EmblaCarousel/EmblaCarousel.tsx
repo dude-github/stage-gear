@@ -164,7 +164,7 @@ import {
 } from "../EmblaCarousel/EmblaCarouselArrowButton";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import { Heart } from "lucide-react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const TWEEN_FACTOR_BASE = 0.2;
 
@@ -178,7 +178,7 @@ const EmblaCarousel: React.FC<PropType> = ({ slides, options }) => {
   const [liked, setLiked] = useState<number | null>(null);
   const tweenFactor = useRef(0);
   const tweenNodes = useRef<HTMLElement[]>([]);
-  const router = useRouter();
+  // const router = useRouter();
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
@@ -267,7 +267,7 @@ const EmblaCarousel: React.FC<PropType> = ({ slides, options }) => {
                     className="embla__slide__img embla__parallax__img cursor-pointer hover:opacity-60 opacity-100"
                     src={`https://picsum.photos/600/350?v=${index}`}
                     alt="Your alt text"
-                    onClick={() => router.push(`/image/${index}`)}
+                    // onClick={() => router.push(`/image/${index}`)}
                   />
                   <button
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  p-2 rounded-full shadow-sm"

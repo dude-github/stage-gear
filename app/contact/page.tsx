@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 interface FType {
   name: string;
   email: string;
-  subject: string;
+  // subject: string;
   message: string;
 }
 const Contact = () => {
@@ -21,7 +21,7 @@ const Contact = () => {
   const [form, setForm] = useState<FType>({
     name: "",
     email: "",
-    subject: "",
+    // subject: "",
     message: "",
   });
 
@@ -56,7 +56,7 @@ const Contact = () => {
       setForm({
         name: "",
         email: "",
-        subject: "",
+        // subject: "",
         message: "",
       });
     } catch (error) {
@@ -273,7 +273,7 @@ const Contact = () => {
                     />
                   </label>
                 </div>
-                <label className="w-full">
+                {/* <label className="w-full">
                   <Input
                     type="text"
                     name="subject"
@@ -283,7 +283,7 @@ const Contact = () => {
                     className="w-full text-white p-2 rounded-md"
                     placeholder="Subject"
                   />
-                </label>
+                </label> */}
                 <label className="w-full">
                   <Textarea
                     rows={5}

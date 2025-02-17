@@ -339,13 +339,203 @@
 // ! CHAT GPT CODE
 
 "use client";
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+// import { motion } from "framer-motion";
+// import {
+//   ChevronLeft,
+//   ChevronRight,
+//   // Heart
+// } from "lucide-react";
+// import { useSwipeable } from "react-swipeable";
+
+// const images = [
+//   {
+//     src: "/img/1.png",
+//     text: "Intelligent Lights ",
+//     desc: "LED LAMP SOURCE CMY & RGB MOVING FIXTURE",
+//     link: "/movinglight",
+//   },
+//   {
+//     src: "/img/2.png",
+//     text: "Static Lights",
+//     desc: "LED LAMP SOURCE SPOT & WASH & STROBE FIXTURE",
+//     link: "/staticlights",
+//   },
+//   {
+//     src: "/img/3.png",
+//     text: "EFFECT LIGHTS",
+//     desc: "ripple-projector dj effects pinspots blinders",
+//     link: "/fxlights",
+//   },
+//   {
+//     src: "/img/4.png",
+//     text: "film lights",
+//     desc: "LED light-panel tube fresnel & spotlights",
+//     link: "/filmlights",
+//   },
+//   {
+//     src: "/img/5.png",
+//     text: "led pixels",
+//     desc: "led pixel product bars orbs festoons & tubes",
+//     link: "/pixels",
+//   },
+//   {
+//     src: "/img/6.png",
+//     text: "special effects",
+//     desc: "atmospheric effects smoke haze confetti & etc.",
+//     link: "/sfx",
+//   },
+//   {
+//     src: "/img/1.png",
+//     text: "Audio visual",
+//     desc: "Speakers projector media sever & etc.",
+//     link: "/audiovisual",
+//   },
+//   {
+//     src: "/img/2.png",
+//     text: "Control system",
+//     desc: "lighting consoles & distribution system",
+//     link: "/controlsystem",
+//   },
+// ];
+
+// const EquipmentSlider = () => {
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const [liked, setLiked] = useState(Array(images.length).fill(false));
+//   const [isPaused, setIsPaused] = useState(false);
+
+//   useEffect(() => {
+//     const savedLikes = localStorage.getItem("likedImages");
+//     setLiked(
+//       savedLikes ? JSON.parse(savedLikes) : Array(images.length).fill(false)
+//     );
+//   }, []);
+
+//   useEffect(() => {
+//     localStorage.setItem("likedImages", JSON.stringify(liked));
+//   }, [liked]);
+
+//   useEffect(() => {
+//     if (isPaused) return;
+//     const interval = setInterval(() => {
+//       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+//     }, 3000);
+//     return () => clearInterval(interval);
+//   }, [isPaused]);
+
+//   // const toggleLike = (index: number) => {
+//   //   const newLiked = [...liked];
+//   //   newLiked[index] = !newLiked[index];
+//   //   setLiked(newLiked);
+//   // };
+
+//   const handlers = useSwipeable({
+//     onSwipedLeft: () =>
+//       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length),
+//     onSwipedRight: () =>
+//       setCurrentIndex(
+//         (prevIndex) => (prevIndex - 1 + images.length) % images.length
+//       ),
+//     preventScrollOnSwipe: true,
+//   });
+
+//   return (
+//     <div
+//       {...handlers}
+//       className="relative w-full h-screen overflow-hidden"
+//       onMouseEnter={() => setIsPaused(true)}
+//       onMouseLeave={() => setIsPaused(false)}
+//     >
+//       {/* Left Arrow */}
+//       <button
+//         className="absolute left-4 z-10 p-2 top-[50%] bg-gray-800 text-white rounded-full"
+//         onClick={() =>
+//           setCurrentIndex(
+//             (prevIndex) => (prevIndex - 1 + images.length) % images.length
+//           )
+//         }
+//       >
+//         <ChevronLeft className="w-6 h-6" />
+//       </button>
+
+//       {/* Image Carousel */}
+//       <div className="relative flex items-center justify-center h-full">
+//         <div className="flex gap-0 overflow-hidden w-full h-full">
+//           {[...images, ...images]
+//             .slice(currentIndex, currentIndex + 5)
+//             .map((image, index) => (
+//               <motion.div
+//                 key={index}
+//                 initial={{ opacity: 0, scale: 0.9 }}
+//                 animate={{ opacity: 1, scale: 1 }}
+//                 exit={{ opacity: 0, scale: 0.9 }}
+//                 className="relative w-1/2 md:w-1/5 h-full cursor-pointer transition duration-1000 hover:grayscale"
+//                 onClick={() => (window.location.href = image.link)}
+//               >
+//                 {/* Image with Grayscale Hover Effect */}
+//                 <img
+//                   src={image.src}
+//                   alt="slide"
+//                   className="w-full h-full object-cover shadow-lg transition duration-300 hover:grayscale"
+//                 />
+
+//                 {/* Text Overlay */}
+//                 <motion.div className="absolute inset-0 flex flex-col space-y-3 items-center justify-center text-white transition-opacity duration-300">
+//                   <p className="text-xl font-extrabold uppercase tracking-wide text-balance">
+//                     {image.text}
+//                   </p>
+//                   <p className="text-center uppercase text-gray-300 font-mono">
+//                     {image.desc}
+//                   </p>
+//                 </motion.div>
+
+//                 {/* Like Button */}
+//                 {/* <button
+//                   onClick={(e) => {
+//                     e.stopPropagation(); // Prevents redirect on like button click
+//                     toggleLike((currentIndex + index) % images.length);
+//                   }}
+//                   className={`absolute bottom-4 right-4 p-2 rounded-full shadow-md transition-transform transform ${
+//                     liked[(currentIndex + index) % images.length]
+//                       ? "scale-110 text-red-500"
+//                       : "scale-100 text-gray-500"
+//                   }`}
+//                 >
+//                   <Heart
+//                     className="w-6 h-6"
+//                     fill={
+//                       liked[(currentIndex + index) % images.length]
+//                         ? "red"
+//                         : "none"
+//                     }
+//                   />
+//                 </button> */}
+//               </motion.div>
+//             ))}
+//         </div>
+//       </div>
+
+//       {/* Right Arrow */}
+//       <button
+//         className="absolute right-4 z-10 p-2 top-[50%] bg-gray-800 text-white rounded-full"
+//         onClick={() =>
+//           setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+//         }
+//       >
+//         <ChevronRight className="w-6 h-6" />
+//       </button>
+//     </div>
+
+//     // ! CHAT GPT CODE
+//   );
+// };
+
+// export default EquipmentSlider;
+
+// * ///////////////////////////////////////////////////////////////////
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import {
-  ChevronLeft,
-  ChevronRight,
-  // Heart
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSwipeable } from "react-swipeable";
 
 const images = [
@@ -401,126 +591,88 @@ const images = [
 
 const EquipmentSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [liked, setLiked] = useState(Array(images.length).fill(false));
   const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    const savedLikes = localStorage.getItem("likedImages");
-    setLiked(
-      savedLikes ? JSON.parse(savedLikes) : Array(images.length).fill(false)
-    );
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("likedImages", JSON.stringify(liked));
-  }, [liked]);
-
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  // const toggleLike = (index: number) => {
-  //   const newLiked = [...liked];
-  //   newLiked[index] = !newLiked[index];
-  //   setLiked(newLiked);
-  // };
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handlers = useSwipeable({
     onSwipedLeft: () =>
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length),
+      setCurrentIndex((prevIndex) =>
+        prevIndex < images.length - 1 ? prevIndex + 1 : prevIndex
+      ),
     onSwipedRight: () =>
-      setCurrentIndex(
-        (prevIndex) => (prevIndex - 1 + images.length) % images.length
+      setCurrentIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : prevIndex
       ),
     preventScrollOnSwipe: true,
   });
 
+  useEffect(() => {
+    if (isPaused) return;
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex < images.length - 1 ? prevIndex + 1 : prevIndex
+      );
+    }, 3000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused]);
+
   return (
     <div
       {...handlers}
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full h-[60vh] sm:h-screen overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Left Arrow */}
       <button
-        className="absolute left-4 z-10 p-2 top-[50%] bg-gray-800 text-white rounded-full"
+        className="absolute left-4 z-10 p-2 top-[50%] bg-gray-800 text-white rounded-full sm:left-2 disabled:opacity-50"
         onClick={() =>
-          setCurrentIndex(
-            (prevIndex) => (prevIndex - 1 + images.length) % images.length
+          setCurrentIndex((prevIndex) =>
+            prevIndex > 0 ? prevIndex - 1 : prevIndex
           )
         }
+        disabled={currentIndex === 0}
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
 
       {/* Image Carousel */}
       <div className="relative flex items-center justify-center h-full">
-        <div className="flex gap-0 overflow-hidden w-full h-full">
-          {[...images, ...images]
-            .slice(currentIndex, currentIndex + 5)
-            .map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="relative w-1/5 h-full cursor-pointer transition duration-1000 hover:grayscale"
-                onClick={() => (window.location.href = image.link)}
-              >
-                {/* Image with Grayscale Hover Effect */}
-                <img
-                  src={image.src}
-                  alt="slide"
-                  className="w-full h-full object-cover shadow-lg transition duration-300 hover:grayscale"
-                />
-
-                {/* Text Overlay */}
-                <motion.div className="absolute inset-0 flex flex-col space-y-3 items-center justify-center text-white transition-opacity duration-300">
-                  <p className="text-xl font-extrabold uppercase tracking-wide text-balance">
-                    {image.text}
-                  </p>
-                  <p className="text-center uppercase text-gray-300 font-mono">
-                    {image.desc}
-                  </p>
-                </motion.div>
-
-                {/* Like Button */}
-                {/* <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevents redirect on like button click
-                    toggleLike((currentIndex + index) % images.length);
-                  }}
-                  className={`absolute bottom-4 right-4 p-2 rounded-full shadow-md transition-transform transform ${
-                    liked[(currentIndex + index) % images.length]
-                      ? "scale-110 text-red-500"
-                      : "scale-100 text-gray-500"
-                  }`}
-                >
-                  <Heart
-                    className="w-6 h-6"
-                    fill={
-                      liked[(currentIndex + index) % images.length]
-                        ? "red"
-                        : "none"
-                    }
-                  />
-                </button> */}
-              </motion.div>
-            ))}
-        </div>
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          className="relative w-full h-full cursor-pointer transition duration-1000"
+          onClick={() => (window.location.href = images[currentIndex].link)}
+        >
+          <img
+            src={images[currentIndex].src}
+            alt="slide"
+            className="w-full h-full object-cover shadow-lg transition duration-300"
+          />
+          <motion.div className="absolute inset-0 flex flex-col space-y-3 items-center justify-center text-white bg-black bg-opacity-40">
+            <p className="text-xl font-extrabold uppercase tracking-wide">
+              {images[currentIndex].text}
+            </p>
+            <p className="text-center uppercase text-gray-300">
+              {images[currentIndex].desc}
+            </p>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Right Arrow */}
       <button
-        className="absolute right-4 z-10 p-2 top-[50%] bg-gray-800 text-white rounded-full"
+        className="absolute right-4 z-10 p-2 top-[50%] bg-gray-800 text-white rounded-full sm:right-2 disabled:opacity-50"
         onClick={() =>
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+          setCurrentIndex((prevIndex) =>
+            prevIndex < images.length - 1 ? prevIndex + 1 : prevIndex
+          )
         }
+        disabled={currentIndex === images.length - 1}
       >
         <ChevronRight className="w-6 h-6" />
       </button>

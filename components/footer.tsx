@@ -103,7 +103,7 @@ const Footer = () => {
       </div>
 
       {/* Right Side  */}
-      <div className="flex flex-col items-start justify-start pt-4 px-4 w-full md:w-[50%]">
+      <div className="flex flex-col lg:items-start lg:justify-start pt-4 px-4 w-full md:w-[50%]">
         <div className="">
           <div className="pt-2">
             <div>
