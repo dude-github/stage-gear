@@ -144,7 +144,7 @@ const Navbar = () => {
 
       {/* Social Icons */}
       <div className="flex space-x-4 items-center mt-4 md:mt-0">
-        <Link href="/facebook.com">
+        <Link href="https://www.facebook.com">
           <Image
             src="/icons/facebook.png"
             alt="facebook"
@@ -152,7 +152,7 @@ const Navbar = () => {
             width={40}
           />
         </Link>
-        <Link href="/instagram.com">
+        <Link href="https://www.instagram.com">
           <Image
             src="/icons/instagram.png"
             alt="instagram"
@@ -160,7 +160,7 @@ const Navbar = () => {
             width={40}
           />
         </Link>
-        <Link href="/youtube.com">
+        <Link href="https://www.youtube.com">
           <Image
             src="/icons/youtube.png"
             alt="youtube"
